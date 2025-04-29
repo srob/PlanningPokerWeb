@@ -1,9 +1,9 @@
 {
   "name": "planningpokerwebapp_anyvotereveal",
   "version": "1.0.0",
-  "main": "app.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -18,9 +18,9 @@
   "homepage": "https://github.com/srob/PlanningPokerWeb#readme",
   "description": "",
   "devDependencies": {
+    "@babel/core": "^7.26.10",
+    "@babel/preset-env": "^7.26.9",
+    "babel-jest": "^29.7.0",
     "jest": "^29.7.0"
-  },
-  "scripts": {
-    "test": "jest"
   }
 }

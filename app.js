@@ -1,4 +1,6 @@
 import { db } from './firebaseConfig.js';
+import { countVotes } from './utils.js';
+
 import {
   doc,
   setDoc,
@@ -121,7 +123,7 @@ function listenToSession(id) {
 
     if (userId === createdBy || userId === localCreatorId) {
     const participantCount = Object.keys(participants).length;
-    const voteCount = Object.keys(votes || {}).length;
+    const voteCount = countVotes(votes || {});
 
       if (voteCount > 0) {
       const revealBtn = document.createElement('button');
