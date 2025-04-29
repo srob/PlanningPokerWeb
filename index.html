@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planning Poker Web</title>
+  <link rel="stylesheet" href="spinner.css" />
+</head>
+<body>
+  <div id="app">
+    <h1>Planning Poker</h1>
+
+    <div>
+      <input id="username" placeholder="Your name" />
+      <button id="createSessionBtn">➕ Create Session</button>
+    </div>
+
+    <div>
+      <input id="sessionIdInput" placeholder="Session ID" />
+      <button id="joinSessionBtn">🔗 Join Session</button>
+    </div>
+
+    <div id="sessionView" style="display: none;">
+      <p>Session ID: <span id="sessionIdDisplay"></span></p>
+      <div id="participants"></div>
+      <div id="votes"></div>
+      <div id="buttons"></div>
+      <div id="creatorControls" style="margin-top: 10px;"></div>
+    </div>
+
+    <div id="spinner" class="spinner" style="display: none;"></div>
+  </div>
+
+  <script type="module" src="firebaseConfig.js"></script>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
