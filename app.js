@@ -17,6 +17,15 @@ let unsubscribe = null;
 
 const estimateValues = ['0', '1', '2', '3', '5', '8', '13', '20', '40', '100', '?'];
 
+function generateSessionId(length = 6) {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+  return result;
+}
+
 function showSpinner(show) {
   document.getElementById('spinner').style.display = show ? 'block' : 'none';
 }
@@ -26,7 +35,7 @@ function createSession() {
   if (!userName) return alert('Please enter your name first.');
 
   showSpinner(true);
-  const newSessionId = Math.random().toString(36).substring(2, 8).toUpperCase();
+  const newSessionId = generateSessionId();
   sessionId = newSessionId;
 
   const sessionRef = doc(db, 'sessions', sessionId);
@@ -122,19 +131,19 @@ function listenToSession(id) {
     const localCreatorId = localStorage.getItem('creator_userid');
 
     if (userId === createdBy || userId === localCreatorId) {
-    const participantCount = Object.keys(participants).length;
-    const voteCount = countVotes(votes || {});
+      const participantCount = Object.keys(participants).length;
+      const voteCount = countVotes(votes || {});
 
       if (voteCount > 0) {
-      const revealBtn = document.createElement('button');
-      revealBtn.textContent = revealed ? '🙈 Hide Votes' : '👁 Reveal Votes';
-      revealBtn.onclick = () => {
-        updateDoc(sessionRef, {
-          revealed: !revealed
-        });
-      };
-      controlsDiv.appendChild(revealBtn);
-    }
+        const revealBtn = document.createElement('button');
+        revealBtn.textContent = revealed ? '🙈 Hide Votes' : '👁 Reveal Votes';
+        revealBtn.onclick = () => {
+          updateDoc(sessionRef, {
+            revealed: !revealed
+          });
+        };
+        controlsDiv.appendChild(revealBtn);
+      }
 
       const resetBtn = document.createElement('button');
       resetBtn.textContent = '🔄 Reset Session';
